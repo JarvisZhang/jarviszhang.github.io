@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Jarvis Zhang's Blog]]></title>
-  <link href="http://JarvisZhang.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Others | Jarvis Zhang's Blog]]></title>
+  <link href="http://JarvisZhang.github.io/blog/categories/others/atom.xml" rel="self"/>
   <link href="http://JarvisZhang.github.io/"/>
   <updated>2014-04-22T22:43:16+08:00</updated>
   <id>http://JarvisZhang.github.io/</id>
