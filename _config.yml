@@ -3,9 +3,9 @@
 # ----------------------- #
 
 url: http://JarvisZhang.github.io
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+title: Jarvis Zhang's Blog
+subtitle: Step by Step
+author: Jarvis Zhang
 simple_search: https://www.google.com/search
 description:
 
@@ -70,7 +70,7 @@ github_skip_forks: true
 
 # Twitter
 twitter_user:
-twitter_tweet_button: true
+twitter_tweet_button: false
 
 # Google +1
 google_plus_one: false
