@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Jarvis Zhang's Blog]]></title>
-  <link href="http://JarvisZhang.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: git | Jarvis Zhang's Blog]]></title>
+  <link href="http://JarvisZhang.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://JarvisZhang.github.io/"/>
   <updated>2014-05-18T16:50:31+08:00</updated>
   <id>http://JarvisZhang.github.io/</id>
@@ -138,29 +138,6 @@ print ('bye')
 
 
 <p>整个过程有可能遇到很多问题，要多利用<code>git diff</code>和 <code>git log</code>来分析</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My first Blog]]></title>
-    <link href="http://JarvisZhang.github.io/blog/2014/04/21/my-first-blog/"/>
-    <updated>2014-04-21T20:35:33+08:00</updated>
-    <id>http://JarvisZhang.github.io/blog/2014/04/21/my-first-blog</id>
-    <content type="html"><![CDATA[<p>很久没有写过什么有价值的东西了，当初更新日志的好习惯还是应该保持，不过作为一名技工还是离qq空间之类的东西远一点吧，先用octopress给自己搭一个简单的blog培养一下习惯。</p>
-
-<p>希望能在一年的时间内稍微做出点什么来。</p>
-
-<blockquote><p>Life is short.<br/>
-Step by step.<br/>
-Stay hungry, stay foolish.</p></blockquote>
-
-<h2>See you</h2>
-
-<pre><code>import time
-
-if __name__ == '__main__':
-    time.sleep(365 * 24 * 3600)
-</code></pre>
 ]]></content>
   </entry>
   
