@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Jarvis Zhang's Blog</title>
+  <title>Intel MIC初探（一）：MIC架构及编程模型概览 - Jarvis Zhang's Blog</title>
   <meta name="author" content="Jarvis Zhang">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://JarvisZhang.github.io/">
+  <link rel="canonical" href="http://JarvisZhang.github.io/blog/2014/08/23/intel-mic-overview-1/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -65,15 +65,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/08/23/intel-mic-overview-1/">Intel MIC初探（一）：MIC架构及编程模型概览</a></h1>
+      <h1 class="entry-title">Intel MIC初探（一）：MIC架构及编程模型概览</h1>
     
     
       <p class="meta">
@@ -96,7 +93,7 @@
   </header>
 
 
-  <div class="entry-content"><h1>楔子</h1>
+<div class="entry-content"><h1>楔子</h1>
 
 <p>Intel MIC（Many Integrated Core）架构是将多个核心整合在一起的处理器，面向HPC（High Performance Computing）领域，旨在引领行业进入百亿亿次计算时代，在其计算机体系中，并非欲取代CPU，而是作为协处理器存在的。MIC芯片通常有数十个精简的x86核心，提供高度并行的计算能力。虽然Intel官方声称原生的CPU程序无需进行大的改动即可在MIC芯片上运行，但是笔者在具体的应用移植过程中发现，真实的应用在MIC架构下通常都会在规模、内存以及第三方库移植等各方面受到一定的制约。</p>
 
@@ -168,177 +165,16 @@
 
 <p>[6] Intel Developer Zone. <em>An overview of programming for Intel Xeon processors and Intel Xeon Phi coprocessors</em>[EB/OL]. <a href="https://software.intel.com/en-us/articles/an-overview-of-programming-for-intel-xeon-processors-and-intel-xeon-phi-coprocessors,">https://software.intel.com/en-us/articles/an-overview-of-programming-for-intel-xeon-processors-and-intel-xeon-phi-coprocessors,</a> 2012.11.12</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/05/12/shi-yong-rebasexiu-gai-li-shi-commit/">使用rebase修改历史commit</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Jarvis Zhang</span></span>
 
-<time datetime="2014-05-12T22:32:17+08:00" pubdate data-updated="true">May 12<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近在使用gerrit做code review，经常遇到的一个情况是需要更改已经commit的代码。</p>
-
-<p>比如对于如下形式的branch tree:</p>
-
-<pre><code>A -- B -- C -- D  (develop)
-</code></pre>
-
-<p>问题来了，gerrit上得到了反馈，C上的代码有问题，需要修改。而秉承着“一步一commit“的守则，已经有新的commit提交上去了，目前仓库和远程仓库的HEAD都指向了D。</p>
-
-<p>虽然可以暂时把B merge进去，然后再直接提交一个新commit(E)去修复B上的bug的，但这显然不够优雅，而且把明知道有bug的commit也merge进去本身也是存在风险的，这时，git rebase就派上用场了。</p>
-
-<p>整个主要过程分为四个步骤：</p>
-
-<ol>
-<li>修改C中的bug，commit到本地repo为E</li>
-<li>输入命令<code>git rebase -i HEAD~3</code></li>
-<li>根据提示，调整commit顺序，将最新的commit放到C之后，根据提示将pick改为squash，保存退出。（若存在冲突则处理并git add，继续<code>git rebase --continue</code>）</li>
-<li><code>git push --force origin develop</code> # 假设目标分支为develop分支</li>
-</ol>
-
-
-<p>git rebase本来是用来处理分支衍合的，具体原理可以参考官方手册：</p>
-
-<blockquote><p><a href="http://git-scm.com/book/en/Git-Branching-Rebasing">http://git-scm.com/book/en/Git-Branching-Rebasing</a></p></blockquote>
-
-<p>这里我们实际做的是重新调整合并了当前分支的commit顺序，举个例子：</p>
-
-<p>当前分支名为myrebase，文件rebase_test.py与两个commit相关：</p>
-
-<pre><code># commit A
-print ('hello rebase')
-# commit B
-print ('bye')
-</code></pre>
-
-<p>现欲在commit A增加为：</p>
-
-<pre><code>print ('May 18th')
-</code></pre>
-
-<p>依次做以下操作：</p>
-
-<ul>
-<li>修改rabase_test.py</li>
-<li><p>新提交一个commit C</p>
-
-<p>  <code>git commit -am "fix on commit A"</code></p></li>
-<li><p>使用命令</p>
-
-<p>  <code>git rebase -i HEAD~3</code></p></li>
-</ul>
-
-
-<blockquote><p>-i 表示交互式rebase</p>
-
-<p>HEAD~3 表示对HEAD之前的三次commit进行rebase</p></blockquote>
-
-<p>也可以使用<code>git rebase -i $commit-id-before-commit-A</code></p>
-
-<p>其中$commit-id-before-commit-A为commit A之前commit的id，结果如下：</p>
-
-<blockquote><p>pick 5b55a02 first commit add hello rebase</p>
-
-<p>pick 2f5c48f second commit add bye</p>
-
-<p>pick 225e901 fix on commit A</p>
-
-<p># Rebase 7f8e5eb..225e901 onto 7f8e5eb</p>
-
-<p>#</p>
-
-<p># Commands:</p>
-
-<p>#  p, pick = use commit</p>
-
-<p>#  r, reword = use commit, but edit the commit message</p>
-
-<p>#  e, edit = use commit, but stop for amending</p>
-
-<p>#  s, squash = use commit, but meld into previous commit</p>
-
-<p>#  f, fixup = like &ldquo;squash&rdquo;, but discard this commit&rsquo;s log message</p>
-
-<p>#  x, exec = run command (the rest of the line) using shell</p>
-
-<p>#</p>
-
-<p># These lines can be re-ordered; they are executed from top to bottom.</p>
-
-<p>#</p>
-
-<p># If you remove a line here THAT COMMIT WILL BE LOST.</p>
-
-<p>#</p>
-
-<p># However, if you remove everything, the rebase will > be aborted.</p>
-
-<p>#</p>
-
-<p># Note that empty commits are commented out</p></blockquote>
-
-<ul>
-<li>根据注释中对各参数的解释，将前三行改为</li>
-</ul>
-
-
-<blockquote><p>pick 5b55a02 first commit add hello rebase</p>
-
-<p>squash 225e901 fix on commit A</p>
-
-<p>pick 2f5c48f second commit add bye</p></blockquote>
-
-<ul>
-<li>若存在冲突，则处理冲突后<code>git commit add .</code>并<code>git rebase --continue</code></li>
-<li>由于使用了squash参数，根据提示调整commit信息</li>
-<li>看到rebase successful消息后，使用<code>git push --force origin myrebase</code></li>
-</ul>
-
-
-<p>整个过程有可能遇到很多问题，要多利用<code>git diff</code>和 <code>git log</code>来分析</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/04/21/my-first-blog/">My First Blog</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -350,41 +186,42 @@ print ('bye')
   
 
 
-<time datetime="2014-04-21T20:35:33+08:00" pubdate data-updated="true">Apr 21<span>st</span>, 2014</time>
-        
-      </p>
+<time datetime="2014-08-23T19:58:46+08:00" pubdate data-updated="true">Aug 23<span>rd</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/intel/'>Intel</a>, <a class='category' href='/blog/categories/mic/'>MIC</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>很久没有写过什么有价值的东西了，当初更新日志的好习惯还是应该保持，不过作为一名技工还是离qq空间之类的东西远一点吧，先用octopress给自己搭一个简单的blog培养一下习惯。</p>
-
-<p>希望能在一年的时间内稍微做出点什么来。</p>
-
-<blockquote><p>Life is short.<br/>
-Step by step.<br/>
-Stay hungry, stay foolish.</p></blockquote>
-
-<h2>See you</h2>
-
-<pre><code>import time
-
-if __name__ == '__main__':
-    time.sleep(365 * 24 * 3600)
-</code></pre>
+      <div class="sharing">
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/05/12/shi-yong-rebasexiu-gai-li-shi-commit/" title="Previous Post: 使用rebase修改历史commit">&laquo; 使用rebase修改历史commit</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -409,7 +246,7 @@ if __name__ == '__main__':
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/jarviszhang">@jarviszhang</a> on GitHub
@@ -442,6 +279,7 @@ if __name__ == '__main__':
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -456,7 +294,10 @@ if __name__ == '__main__':
       var disqus_shortname = 'jarviszhang';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://JarvisZhang.github.io/blog/2014/08/23/intel-mic-overview-1/';
+        var disqus_url = 'http://JarvisZhang.github.io/blog/2014/08/23/intel-mic-overview-1/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

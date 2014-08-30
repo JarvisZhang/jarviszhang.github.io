@@ -2,24 +2,28 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://JarvisZhang.github.io/blog/2014/04/21/my-first-blog/</loc>
-        <lastmod>2014-04-26T18:19:43+08:00</lastmod>
+        <lastmod>2014-08-23T16:09:25+08:00</lastmod>
     </url>
     <url>
         <loc>
             http://JarvisZhang.github.io/blog/2014/05/12/shi-yong-rebasexiu-gai-li-shi-commit/
         </loc>
-        <lastmod>2014-05-18T16:50:30+08:00</lastmod>
+        <lastmod>2014-08-23T16:09:25+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://JarvisZhang.github.io/blog/2014/08/23/intel-mic-overview-1/</loc>
+        <lastmod>2014-08-30T17:14:11+08:00</lastmod>
     </url>
     <url>
         <loc>http://JarvisZhang.github.io/blog/archives/</loc>
-        <lastmod>2014-05-18T16:50:30+08:00</lastmod>
+        <lastmod>2014-08-30T17:14:11+08:00</lastmod>
     </url>
     <url>
         <loc>http://JarvisZhang.github.io/</loc>
-        <lastmod>2014-05-18T16:50:30+08:00</lastmod>
+        <lastmod>2014-08-30T17:14:11+08:00</lastmod>
     </url>
     <url>
         <loc>http://JarvisZhang.github.io/robots.txt</loc>
-        <lastmod>2014-04-21T19:58:03+08:00</lastmod>
+        <lastmod>2014-08-23T16:09:25+08:00</lastmod>
     </url>
 </urlset>
