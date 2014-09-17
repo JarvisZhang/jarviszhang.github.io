@@ -1,99 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>关于Linux服务器安全防护的基本方法 - Jarvis Zhang's Blog</title>
-  <meta name="author" content="Jarvis Zhang">
-
-  
-  <meta name="description" content="楔子 服务器的安全防护一直以来都是老生长谈的话题，虽然我们平时接触的服务器影响力一般，不会被攻击者处心积虑利用各种漏洞攻击，但做一些基本的防护措施还是很有必要的，可以避免那些常年活跃在互联网上的自动化攻击。 曾有国外安全研究者做过实验，他们搭建了一台蜜罐服务器，该服务上安装了修改后的SSHD版本， &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://JarvisZhang.github.io/blog/2014/09/16/basic-ways-to-protect-linux-server/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Jarvis Zhang's Blog" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-
-</head>
-
-<body   >
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="https://www.google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:JarvisZhang.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-    <li><a href="/">
-        <span class="blue_light">
-            Jarvis Zhang's Blog
-        </span>
-       
-           <span class="blue_dark">
-             Step by Step
-           </span>
-       
-    </a></li>
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/about">About me</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
+  <title><![CDATA[Category: ssh | Jarvis Zhang's Blog]]></title>
+  <link href="http://JarvisZhang.github.io/blog/categories/ssh/atom.xml" rel="self"/>
+  <link href="http://JarvisZhang.github.io/"/>
+  <updated>2014-09-17T20:06:13+08:00</updated>
+  <id>http://JarvisZhang.github.io/</id>
+  <author>
+    <name><![CDATA[Jarvis Zhang]]></name>
     
-      <h1 class="entry-title">关于Linux服务器安全防护的基本方法</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2014-09-16T13:38:08+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><h1>楔子</h1>
+  <entry>
+    <title type="html"><![CDATA[关于Linux服务器安全防护的基本方法]]></title>
+    <link href="http://JarvisZhang.github.io/blog/2014/09/16/basic-ways-to-protect-linux-server/"/>
+    <updated>2014-09-16T13:38:08+08:00</updated>
+    <id>http://JarvisZhang.github.io/blog/2014/09/16/basic-ways-to-protect-linux-server</id>
+    <content type="html"><![CDATA[<h1>楔子</h1>
 
 <p>服务器的安全防护一直以来都是老生长谈的话题，虽然我们平时接触的服务器影响力一般，不会被攻击者处心积虑利用各种漏洞攻击，但做一些基本的防护措施还是很有必要的，可以避免那些常年活跃在互联网上的自动化攻击。</p>
 
@@ -390,161 +315,7 @@
 <p>[6] 使用fail2ban防止暴力破解ssh及vsftpd密码[EB/OL]. <a href="https://www.centos.bz/2012/04/prevent-ssh-break-in-with-fail2ban/">https://www.centos.bz/2012/04/prevent-ssh-break-in-with-fail2ban/</a></p>
 
 <p>[7] RSA加密算法[EB/OL]. <a href="http://zh.wikipedia.org/wiki/RSA%E5%8A%A0%E5%AF%86%E6%BC%94%E7%AE%97%E6%B3%95">http://zh.wikipedia.org/wiki/RSA%E5%8A%A0%E5%AF%86%E6%BC%94%E7%AE%97%E6%B3%95</a></p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
+]]></content>
+  </entry>
   
-
-<span class="byline author vcard">Posted by <span class="fn">Jarvis Zhang</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-16T13:38:08+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2014</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/ssh/'>ssh</a>, <a class='category' href='/blog/categories/an-quan/'>安全</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/08/23/intel-mic-overview-1/" title="Previous Post: Intel MIC初探（一）：MIC架构及编程模型概览">&laquo; Intel MIC初探（一）：MIC架构及编程模型概览</a>
-      
-      
-    </p>
-  </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
-
-</div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/09/16/basic-ways-to-protect-linux-server/">关于Linux服务器安全防护的基本方法</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/23/intel-mic-overview-1/">Intel MIC初探（一）：MIC架构及编程模型概览</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/05/12/shi-yong-rebasexiu-gai-li-shi-commit/">使用rebase修改历史commit</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/04/21/my-first-blog/">My first Blog</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="https://github.com/jarviszhang">@jarviszhang</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'jarviszhang',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Jarvis Zhang -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'jarviszhang';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://JarvisZhang.github.io/blog/2014/09/16/basic-ways-to-protect-linux-server/';
-        var disqus_url = 'http://JarvisZhang.github.io/blog/2014/09/16/basic-ways-to-protect-linux-server/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-
-
-
-
-
-
-
-
-</body>
-</html>
+</feed>
